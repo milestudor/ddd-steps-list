@@ -3,20 +3,19 @@
  * @license Apache-2.0, see LICENSE for full text.
  */
 import { LitElement, html, css } from "lit";
-import { DDD } from "@haxtheweb/d-d-d/d-d-d.js";
+import { DDDSuper } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
-import "./ddd-steps-item-list.js";
 
 /**
  * `ddd-steps-list`
  * 
  * @demo index.html
- * @element ddd-steps-list
+ * @element ddd-steps-item-list
  */
-export class DddStepsList extends DDD {
+export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
 
   static get tag() {
-    return "ddd-steps-list";
+    return "ddd-steps-item-list";
   }
 
   constructor() {
@@ -69,7 +68,6 @@ export class DddStepsList extends DDD {
     return html`
 <div class="wrapper">
   <h3><span>${this.t.title}:</span> ${this.title}</h3>
-  <ddd-steps-item-list>paragraph</ddd-steps-item-list>
   <slot></slot>
 </div>`;
   }
@@ -83,4 +81,4 @@ export class DddStepsList extends DDD {
   }
 }
 
-globalThis.customElements.define(DddStepsList.tag, DddStepsList);
+globalThis.customElements.define(DddStepsItemList.tag, DddStepsItemList);
