@@ -21,6 +21,7 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
   constructor() {
     super();
     this.title = "";
+    this.step = 0;
     this.t = this.t || {};
     this.t = {
       ...this.t,
@@ -40,6 +41,7 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
     return {
       ...super.properties,
       title: { type: String },
+      step: { type: Number, reflect: true },
     };
   }
 
@@ -53,9 +55,15 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
         background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
       }
-      .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
+      .item {
+        padding: 16px;
+        display: flex;
+        border-left: 4px solid var(--ddd-theme-primary, #333);
+      }
+      .step-number {
+        font-size: var(--ddd-steps-list-number-font-size, var(--ddd-font-size-xl));
+        font-weight: bold;
+        margin-right: 16px;
       }
       h3 span {
         font-size: var(--ddd-steps-list-label-font-size, var(--ddd-font-size-s));
@@ -66,8 +74,9 @@ export class DddStepsList extends DDDSuper(I18NMixin(LitElement)) {
   // Lit render the HTML
   render() {
     return html`
-<div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
+<div class="item">
+  <span class="step-number">${this.step}</span>
+  <h3>${this.title}</h3>
   <slot></slot>
 </div>`;
   }

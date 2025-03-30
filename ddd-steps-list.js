@@ -21,6 +21,7 @@ export class DddStepsList extends DDD {
 
   constructor() {
     super();
+    this.dddPrimary = "7";
     this.title = "";
     this.t = this.t || {};
     this.t = {
@@ -41,6 +42,7 @@ export class DddStepsList extends DDD {
     return {
       ...super.properties,
       title: { type: String },
+      dddPrimary: { type: String, reflect: true, attribute: "ddd-primary" },
     };
   }
 
@@ -55,8 +57,8 @@ export class DddStepsList extends DDD {
         font-family: var(--ddd-font-navigation);
       }
       .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
+        display: flex;
+        flex-direction: column;
       }
       h3 span {
         font-size: var(--ddd-steps-list-label-font-size, var(--ddd-font-size-s));
@@ -69,7 +71,6 @@ export class DddStepsList extends DDD {
     return html`
 <div class="wrapper">
   <h3><span>${this.t.title}:</span> ${this.title}</h3>
-  <ddd-steps-item-list>paragraph</ddd-steps-item-list>
   <slot></slot>
 </div>`;
   }
