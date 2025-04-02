@@ -5,7 +5,7 @@
 import { LitElement, html, css } from "lit";
 import { DDD } from "@haxtheweb/d-d-d/d-d-d.js";
 import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
-import "./ddd-steps-item-list.js";
+import "./ddd-steps-list-item.js";
 
 /**
  * `ddd-steps-list`
@@ -21,7 +21,7 @@ export class DddStepsList extends DDD {
 
   constructor() {
     super();
-    this.dddPrimary = "7";
+    this.dddPrimary = '5';
     this.title = "";
     this.t = this.t || {};
     this.t = {

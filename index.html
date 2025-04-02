@@ -36,65 +36,46 @@
   <div id="demo">
     <h1>ddd-steps-list</h1>
     <!-- this is going to do whatever the tag's defaults are -->
-     <h2>How the Commanders became like that out of nowhere</h2>
-    <ddd-steps-list ddd-primary="7">
-      <ddd-steps-list-item title="Choose your enrollment period">
-          <p>An incredible 2024 draft from Adam Peters set the Commanders up great for the upcoming season</p>
+    <ddd-steps-list ddd-primary="5">
+      <ddd-steps-list-item step="1" title="Choose your enrollment period">
+          <p>Apply to Penn State</p>
         <ul>
-            <li>The additions of players like Jayden Daniels, Mike Sainristil, Brandon Coleman, and Jer'Zhan Newton had immediate impacts for this football team</li>
+            <li>When completing your application, choose from our twenty campuses and select a first-choice and an alternate campus.</li>
+            <li>If you’re enrolling in the 2+2 Plan, there’s no need to reapply when transitioning to your second campus. This streamlined process makes it easy to start at one campus and move seamlessly to another as you progress in your studies.</li>
         </ul>
       </ddd-steps-list-item>
-      <ddd-steps-list-item title="Choose your enrollment period">
-          <p>The next step this front office took to improving the roster was to find quality talent in free agency</p>
+      <ddd-steps-list-item step="2" title="Choose your enrollment period">
+          <p>Enroll at your starting campus</p>
         <ul>
-            <li>Signing key veterans in Bobby Wagner and Zach Ertz, and landing a few splash signings in Frankie Luvu, Jeremy Chinn, and more helped the Commanders immensely.</li>
+            <li>Start your journey by completing general education and major prerequisite courses at your initial campus.</li>
+            <li>During your first two years, you'll have access to a wide range of opportunities, including student clubs, organizations, and intramural sports, all while learning from expert faculty. This experience will help you build a strong foundation and make the most of your time as a Penn Stater.</li>
         </ul>
       </ddd-steps-list-item>
-      <ddd-steps-list-item title="Choose your enrollment period">
-          <p>The improvement of Jayden Daniels transformed not only the team but also brought back the football culture that the DMV area had been missing</p>
+      <ddd-steps-list-item step="3" title="Choose your enrollment period">
+          <p>Work with your academic advisors</p>
         <ul>
-            <li>In just his second game, Jayden Daniels announced himself to the world with an absolutely sublime performance against the Bengals on Monday Night Football. This was where the legend was born.</li>
+            <li>In the second semester of your sophomore year, you'll collaborate with your academic adviser to begin the campus transfer process.</li>
+            <li>Your adviser will guide you to ensure you're meeting the entrance requirements for your chosen program, as detailed in the Undergraduate Bulletin. This support helps you stay on track and smoothly transition to your next campus.</li>
         </ul>
+      </ddd-steps-list-item>
+      <ddd-steps-list-item step="4" title="Choose your enrollment period">
+        <p>Explore the Undergraduate Bulletin</p>
+      <ul>
+          <li>At Penn State, you’ll officially enter your major during your junior year.</li>
+          <li>To stay on track, review the entrance to major requirements in the Undergraduate Bulletin. By meeting the entrance to major requirements, you’ll transition smoothly into your chosen field of study. These requirements are consistent, whether you start at the University Park campus or another undergraduate campus.</li>
+      </ul>
+      </ddd-steps-list-item>
+      <ddd-steps-list-item step="5" title="Choose your enrollment period">
+        <p>Transition to your new campus</p>
+      <ul>
+          <li>You’ll start your junior year at your new campus, continuing your Penn State journey as you work toward graduation.</li>
+          <li>As you approach the finish line, you'll earn your diploma and join the world’s largest alumni network, marking the beginning of your distinguished status as a Penn State graduate.</li>
+      </ul>
       </ddd-steps-list-item>
     </ddd-steps-list>
   </div>
   <script type="module" src="./ddd-steps-list.js"></script>
 
   <!-- Take HAX, the Web and you further down the rabbit hole -->
-  <style>
-    #follow-the-white-rabbit {
-      margin: var(--ddd-spacing-4) auto 64px  16px;
-      background-color: var(--ddd-accent-4);
-      color: black;
-    }
-    #follow-the-white-rabbit[open] summary {
-      background-color: var(--ddd-accent-4) !important;
-      color: black;
-    }
-    #follow-the-white-rabbit[open] .content {
-      padding: 0 var(--ddd-spacing-4);
-    }
-    #follow-the-white-rabbit ul,
-    #follow-the-white-rabbit li {
-      padding: 0;
-      margin: 0;
-    }
-    #follow-the-white-rabbit li {
-      font-size: var(--ddd-font-size-xs);
-      list-style: none;
-    }
-    #follow-the-white-rabbit li strong,
-    #follow-the-white-rabbit li a {
-      padding: var(--ddd-spacing-2) var(--ddd-spacing-4);
-      color: black;
-      display: block;
-      font-weight: bold;
-    }
-    #follow-the-white-rabbit li:focus-within a,
-    #follow-the-white-rabbit li:hover a {
-      background-color: black;
-      color: yellow;
-    }
-  </style>
 </body>
 </html>
