@@ -7,7 +7,7 @@ import { DDD } from "@haxtheweb/d-d-d/d-d-d.js";
  * @demo index.html
  * @element ddd-steps-item-list
  */
-export class DddStepsList extends LitElement {
+export class DddStepsList extends DDD {
 
   static get tag() {
     return "ddd-steps-item-list";
