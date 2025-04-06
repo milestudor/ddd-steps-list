@@ -1,10 +1,5 @@
-/**
- * Copyright 2025 milestudor
- * @license Apache-2.0, see LICENSE for full text.
- */
 import { LitElement, html, css } from "lit";
 import { DDD } from "@haxtheweb/d-d-d/d-d-d.js";
-import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 
 /**
  * `ddd-steps-list`
@@ -12,7 +7,7 @@ import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
  * @demo index.html
  * @element ddd-steps-item-list
  */
-export class DddStepsList extends DDD {
+export class DddStepsList extends LitElement {
 
   static get tag() {
     return "ddd-steps-item-list";
@@ -20,7 +15,6 @@ export class DddStepsList extends DDD {
 
   constructor() {
     super();
-    this.title = "";
     this.step = 0;
     this.t = this.t || {};
     this.t = {
@@ -51,22 +45,30 @@ export class DddStepsList extends DDD {
     css`
       :host {
         display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
-        font-family: var(--ddd-font-navigation);
+        margin-bottom: var(--ddd-spacing-6, 24px);
       }
-      .item {
-        padding: 16px;
+      :host([data-primary]) .circle {
+        background-color: var(--ddd-theme-default-beaverBlue, #1e407c);
+        color: #fff;
+      }
+      .step-wrapper {
         display: flex;
-        border-left: 4px solid var(--ddd-theme-primary, #333);
+        align-items: flex-start;
       }
-      .step-number {
-        font-size: var(--ddd-steps-list-number-font-size, var(--ddd-font-size-xl));
+      .circle {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        font-size: 12px;
         font-weight: bold;
-        margin-right: 16px;
+        background-color: #ddd;
+        color:  #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
-      h3 span {
-        font-size: var(--ddd-steps-list-label-font-size, var(--ddd-font-size-s));
+      .content {
+        flex: 1;
       }
     `];
   }
@@ -74,11 +76,12 @@ export class DddStepsList extends DDD {
   // Lit render the HTML
   render() {
     return html`
-<div class="item">
-  <span class="step-number">${this.step}</span>
-  <h3>${this.title}</h3>
-  <slot></slot>
-</div>`;
+      <div class="step-wrapper">
+        <div class="circle">${this.step}</div>
+        <div class="content"><slot></slot></div>
+      </div>
+      `;
+
   }
 
   /**

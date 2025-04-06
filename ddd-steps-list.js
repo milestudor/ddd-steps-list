@@ -1,10 +1,4 @@
-/**
- * Copyright 2025 milestudor
- * @license Apache-2.0, see LICENSE for full text.
- */
 import { LitElement, html, css } from "lit";
-import { DDD } from "@haxtheweb/d-d-d/d-d-d.js";
-import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
 import "./ddd-steps-list-item.js";
 
 /**
@@ -13,7 +7,7 @@ import "./ddd-steps-list-item.js";
  * @demo index.html
  * @element ddd-steps-list
  */
-export class DddStepsList extends DDD {
+export class DddStepsList extends LitElement {
 
   static get tag() {
     return "ddd-steps-list";
@@ -21,7 +15,7 @@ export class DddStepsList extends DDD {
 
   constructor() {
     super();
-    this.dddPrimary = '5';
+    this.dddPrimary = false;
     this.title = "";
     this.t = this.t || {};
     this.t = {
@@ -42,7 +36,7 @@ export class DddStepsList extends DDD {
     return {
       ...super.properties,
       title: { type: String },
-      dddPrimary: { type: String, reflect: true, attribute: "ddd-primary" },
+      dddPrimary: { type: Boolean, attribute: "ddd-primary", reflect: true },
     };
   }
 
@@ -68,20 +62,47 @@ export class DddStepsList extends DDD {
 
   // Lit render the HTML
   render() {
-    return html`
-<div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
-  <slot></slot>
-</div>`;
+    return html`<slot @slotchange="${this.onSlotChange}"></slot>`;
+  }
+  
+  firstUpdated() {
+    this.verifyChildren();
   }
 
-  /**
-   * haxProperties integration via file reference
-   */
-  static get haxProperties() {
-    return new URL(`./lib/${this.tag}.haxProperties.json`, import.meta.url)
-      .href;
+  onSlotChange() {
+    this.verifyChildren();
   }
-}
 
-globalThis.customElements.define(DddStepsList.tag, DddStepsList);
+  verifyChildren() {
+    const children = Array.from(this.children);
+    let stepCount = 0;
+    children.forEach((child) => {
+      const tag = child.tagName.toLowerCase();
+      if (tag !== 'ddd-steps-list-item') {
+        this.removeChild(child);
+      } else {
+        stepCount++;
+        child.step = stepCount;
+        if (this.dddPrimary) {
+          child.setAttribute('data-primary', '');
+        } else {
+          child.removeAttribute('data-primary');
+        }
+      }
+    });
+  }
+
+  updated(changedProperties) {
+    if (changedProperties.has('dddPrimary')) {
+      const items = this.querySelectorAll('ddd-steps-list-item');
+      items.forEach((item) => {
+        if (this.dddPrimary) {
+          item.setAttribute('data-primary', '');
+        } else {
+          item.removeAttribute('data-primary');
+        }
+      });
+  }
+
+
+customElements.define('ddd-steps-list', DddStepsList);
