@@ -107,4 +107,4 @@ export class DddStepsListItem extends DDD {
   }
 }
 
-customElements.define(DDDStepsListItem.tag, DDDStepsListItem);
+customElements.define('ddd-steps-list-item', DddStepsListItem);

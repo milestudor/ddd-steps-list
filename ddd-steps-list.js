@@ -1,6 +1,6 @@
-import { LitElement, html, css } from "lit";
+import { html, css } from "lit";
 import { DDD } from "@haxtheweb/d-d-d/d-d-d.js";
-import { DDDStepsListItem } from "./ddd-steps-list-item.js";
+import "./ddd-steps-list-item.js";
 
 /**
  * `ddd-steps-list`
@@ -113,4 +113,4 @@ export class DddStepsList extends DDD {
   }
 }
 
-customElements.define('ddd-steps-list', DDDStepsList);
+customElements.define('ddd-steps-list', DddStepsList);
