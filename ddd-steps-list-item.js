@@ -1,4 +1,4 @@
-import { LitElement, html, css } from "lit";
+import { html, css } from "lit";
 import { DDD } from "@haxtheweb/d-d-d/d-d-d.js";
 
 /**
@@ -7,15 +7,17 @@ import { DDD } from "@haxtheweb/d-d-d/d-d-d.js";
  * @demo index.html
  * @element ddd-steps-item-list
  */
-export class DddStepsList extends DDD {
+export class DddStepsListItem extends DDD {
 
   static get tag() {
-    return "ddd-steps-item-list";
+    return "ddd-steps-list-item";
   }
 
   constructor() {
     super();
     this.step = 0;
+    this.title = "Title";
+    this.dddPrimary = false;
     this.t = this.t || {};
     this.t = {
       ...this.t,
@@ -24,7 +26,7 @@ export class DddStepsList extends DDD {
     this.registerLocalization({
       context: this,
       localesPath:
-        new URL("./locales/ddd-steps-list.ar.json", import.meta.url).href +
+        new URL("./locales/ddd-steps-list-item.ar.json", import.meta.url).href +
         "/../",
       locales: ["ar", "es", "hi", "zh"],
     });
@@ -36,6 +38,7 @@ export class DddStepsList extends DDD {
       ...super.properties,
       title: { type: String },
       step: { type: Number, reflect: true },
+      dddPrimary: { type: Boolean, attribute: "ddd-primary", reflect: true },
     };
   }
 
@@ -56,16 +59,25 @@ export class DddStepsList extends DDD {
         align-items: flex-start;
       }
       .circle {
-        width: 24px;
-        height: 24px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
-        font-size: 12px;
+        font-size: 10px;
         font-weight: bold;
         background-color: #ddd;
         color:  #000;
         display: flex;
         justify-content: center;
         align-items: center;
+      }
+      @media screen and (max-width: 600px) {
+        .step-wrapper {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .circle {
+          margin-bottom: 8px;
+        }
       }
       .content {
         flex: 1;
@@ -78,10 +90,12 @@ export class DddStepsList extends DDD {
     return html`
       <div class="step-wrapper">
         <div class="circle">${this.step}</div>
-        <div class="content"><slot></slot></div>
+        <div class="content"></div>
+          ${this.title ? html`<p class="title">${this.title}</p>` : ""}
+          <slot></slot>
+        </div>
       </div>
       `;
-
   }
 
   /**
@@ -93,4 +107,4 @@ export class DddStepsList extends DDD {
   }
 }
 
-globalThis.customElements.define(DddStepsItemList.tag, DddStepsItemList);
+customElements.define(DDDStepsListItem.tag, DDDStepsListItem);

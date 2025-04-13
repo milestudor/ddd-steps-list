@@ -1,5 +1,6 @@
 import { LitElement, html, css } from "lit";
-import "./ddd-steps-list-item.js";
+import { DDD } from "@haxtheweb/d-d-d/d-d-d.js";
+import { DDDStepsListItem } from "./ddd-steps-list-item.js";
 
 /**
  * `ddd-steps-list`
@@ -36,7 +37,7 @@ export class DddStepsList extends DDD {
     return {
       ...super.properties,
       title: { type: String },
-      dddPrimary: { type: Boolean, attribute: "ddd-primary", reflect: true },
+      dddPrimary: { type: Number, attribute: "ddd-primary", reflect: true },
     };
   }
 
@@ -62,7 +63,11 @@ export class DddStepsList extends DDD {
 
   // Lit render the HTML
   render() {
-    return html`<slot @slotchange="${this.onSlotChange}"></slot>`;
+    return html`
+      <div class="wrapper">
+        <slot @slotchange="${this.onSlotChange}"></slot>
+      </div>
+    `;
   }
   
   firstUpdated() {
@@ -93,16 +98,19 @@ export class DddStepsList extends DDD {
   }
 
   updated(changedProperties) {
+    super.updated(changedProperties);
+    // If dddPrimary changes, update all children to reflect new value
     if (changedProperties.has('dddPrimary')) {
       const items = this.querySelectorAll('ddd-steps-list-item');
       items.forEach((item) => {
         if (this.dddPrimary) {
-          item.setAttribute('data-primary', '');
+          item.dddPrimary = this.dddPrimary;
         } else {
           item.removeAttribute('data-primary');
         }
       });
+    }
   }
+}
 
-
-customElements.define('ddd-steps-list', DddStepsList);
+customElements.define('ddd-steps-list', DDDStepsList);
